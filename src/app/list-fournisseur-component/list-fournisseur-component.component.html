@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-header text-center">
+      Exercice 2
+    </div>
+    <div class="card-body" *ngFor="let fournisseur of list; let i = index">
+        <fieldset class="border border-dark rounded" *ngIf="fournisseur.idFournisseur <= 100" 
+                [style.backgroundColor]="fournisseur.libelle === 'hp' ? 'green' : 'yellow'"
+                (dblclick)="removeFournisseur(i)"
+        >
+        <p>idFournisseur: {{ fournisseur.idFournisseur }}</p>
+            <ul style="list-style-type: none">
+                <li>Code: <span [style.fontWeight]="getColor(fournisseur.code)">{{ fournisseur.code }}</span></li>
+                <li>Libelle: {{ fournisseur.libelle }}</li>
+            </ul>
+        </fieldset>
+    </div>
+</div>

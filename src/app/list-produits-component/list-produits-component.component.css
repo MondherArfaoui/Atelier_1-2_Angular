@@ -1,0 +1,16 @@
+.text-blue {
+    color: blue;
+}
+  
+.text-italic {
+    font-style: italic;
+}
+  
+.text-lg {
+    font-size: 20px;
+}
+  
+.text-normal {
+    font-size: 14px;
+}
+  

@@ -1,0 +1,65 @@
+<div class="card">
+    <div class="card-header text-center">
+      Exercice
+    </div>
+    <br>
+    <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Rechercher par code..." (keyup)="filterProduits()" />
+    <br>
+    <div class="card-body">
+        <ol type="1">
+            <li  *ngFor="let product of filteredList">
+                <div class="border border-dark rounded" [style.color]="product.prixUnitaire <= 50 ? 'blue' : 'black'"
+                    [style.fontStyle]="product.prixUnitaire <= 50 ? 'italic' : 'normal'"
+                    [style.fontSize.px]="product.prixUnitaire <= 50 ? 20 : 14">
+                <!-- <div [ngStyle]="{
+                        color: (product.prixUnitaire <= 50 ? 'blue' : 'black'),
+                        fontStyle: (product.prixUnitaire <= 50 ? 'italic' : 'normal'),
+                        fontSize: (product.prixUnitaire <= 50 ? '20px' : '14px')}"> -->
+                <!-- <div [ngClass]="{
+                        'text-blue': (product.prixUnitaire <= 50),
+                        'text-italic': (product.prixUnitaire <= 50),
+                        'text-lg': (product.prixUnitaire <= 50),
+                        'text-normal': (product.prixUnitaire > 50)}"> -->
+                    <p>Produit: {{ product.libelle }} <button class="btn btn-outline-dark btn-sm" [disabled]="product.tauxTVA === 0.20" (click)="adjustTVA(product)">Ajuster TVA</button>  <span *ngIf="tvaModifiedProductId === product.idProduit">TVA modifiée</span></p>
+                    <ul style="list-style-type: circle">
+                        <li>Identifiant: {{ product.idProduit }}</li>
+                        <li>Code: {{ product.code }}</li>
+                        <li>Prix Unitaire: {{ product.prixUnitaire }}</li>
+                        <li>Taux TVA: {{ product.tauxTVA }}</li>
+                    </ul>
+                </div>
+                <br>
+            </li>
+        </ol>
+    </div>
+</div>
+
+  <br><br>
+
+<div class="card">
+    <div class="card-header text-center">
+      Ajout d'un produit
+    </div>
+    <form #productForm="ngForm" (ngSubmit)="addProduct(productForm.value); productForm.reset()">
+        <div class="card-body">
+            <label class="form-label" for="idProduit">idProduit:</label>
+            <input class="form-control" type="number" id="idProduit" name="idProduit" ngModel required>
+
+            <label class="form-label" for="code">Code:</label>
+            <input class="form-control" type="text" id="code" name="code" ngModel required>
+        
+            <label class="form-label" for="libelle">Libelle:</label>
+            <input class="form-control" type="text" id="libelle" name="libelle" ngModel required>
+        
+            <label class="form-label" for="prixUnitaire">Prix Unitaire:</label>
+            <input class="form-control" type="number" id="prixUnitaire" name="prixUnitaire" ngModel required>
+        
+            <label class="form-label" for="tauxTVA">Taux TVA:</label>
+            <input class="form-control" type="number" id="tauxTVA" name="tauxTVA" ngModel required>
+        </div>
+        
+        <div class="card-footer text-center">
+            <button class="btn btn-primary" type="submit" [disabled]="!productForm.valid">Ajouter</button>
+        </div>
+    </form>
+</div>

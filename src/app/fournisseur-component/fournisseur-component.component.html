@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-header text-center">
+      Exercice 1
+    </div>
+    <div class="card-body"  [hidden]="hide">
+      <ul>
+        <li>Id Fournisseur: {{ idFournisseur }}</li>
+        <li>Code: {{ code }}</li>
+        <li>Libelle: {{ libelle }}</li>
+    </ul>
+    </div>
+    <div class="card-footer text-muted text-center">
+        <button class="btn btn-primary" (click)="toggleHide()">Cacher</button>
+    </div>
+  </div>
